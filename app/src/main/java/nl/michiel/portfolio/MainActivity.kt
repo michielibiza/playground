@@ -3,6 +3,7 @@ package nl.michiel.portfolio
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import nl.michiel.portfolio.ui.TopLevelNavigation
 import nl.michiel.portfolio.ui.theme.PortfolioTheme
 
 class MainActivity : ComponentActivity() {
@@ -10,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PortfolioTheme {
-//                TopLevelNavigation()
+                TopLevelNavigation()
             }
         }
     }
