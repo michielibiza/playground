@@ -50,6 +50,7 @@ dependencies {
     implementation libs.compose.paging
     implementation libs.retrofit
     implementation libs.retrofitmoshi
+    implementation libs.timber
 
     testImplementation libs.test.junit
 
