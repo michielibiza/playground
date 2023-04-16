@@ -1,11 +1,13 @@
 package nl.michiel.friends.domain
 
-import nl.michiel.friends.data.Friend
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 
 class FriendsRepository {
-    private val dataSource = FriendRemoteDataSource()
-
-    suspend fun getFriends(): List<Friend> {
-        return dataSource.getFriends()
+    private val service = createService()
+    private val pager = Pager(PagingConfig(10)) {
+        FriendPagingSource(service)
     }
+
+    fun getFriends() = pager.flow
 }
