@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import nl.michiel.friends.view.FriendsScreen
 
 enum class Navigation(val icon: ImageVector) {
     TRIPS(Icons.Filled.Place),
@@ -57,7 +58,7 @@ fun TopLevelNavigation() {
     ) { padding ->
         NavHost(navController = navController, startDestination = Navigation.TRIPS.name, Modifier.padding(padding)) {
             composable(Navigation.TRIPS.name) { Todo("trips") }
-            composable(Navigation.FRIENDS.name) { Todo("friends") }
+            composable(Navigation.FRIENDS.name) { FriendsScreen() }
             composable(Navigation.PROFILE.name) { Todo("profile") }
         }
     }
