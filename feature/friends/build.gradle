@@ -46,6 +46,10 @@ dependencies {
     implementation libs.compose.ui
     implementation libs.compose.preview
     implementation libs.compose.material
+    implementation libs.androidx.paging
+    implementation libs.compose.paging
+    implementation libs.retrofit
+    implementation libs.retrofitmoshi
 
     testImplementation libs.test.junit
 
