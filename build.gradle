@@ -27,6 +27,7 @@ buildscript {
                         compose : "androidx.compose.ui:ui-test-junit4:$compose_ui_version",
                 ],
 
+                coil    : "io.coil-kt:coil-compose:2.2.2",
                 retrofit: "com.squareup.retrofit2:retrofit:$retrofit_version",
                 retrofitmoshi: "com.squareup.retrofit2:converter-moshi:$retrofit_version",
         ]

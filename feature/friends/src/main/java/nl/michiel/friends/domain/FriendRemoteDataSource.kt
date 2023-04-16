@@ -43,4 +43,4 @@ fun createService(): RandomUserService {
 }
 
 private fun RandomUser.toFriend(id: Int) =
-    Friend(id, "${name.first} ${name.last}", picture.large)
+    Friend(id, name.first, picture.large)

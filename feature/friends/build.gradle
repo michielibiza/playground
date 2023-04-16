@@ -51,9 +51,14 @@ dependencies {
     implementation libs.retrofit
     implementation libs.retrofitmoshi
     implementation libs.timber
+    implementation libs.coil
 
     testImplementation libs.test.junit
 
     androidTestImplementation libs.test.extjunit
     androidTestImplementation libs.test.espresso
+
+    debugImplementation libs.compose.tooling
+    debugImplementation libs.compose.manifest
+
 }
