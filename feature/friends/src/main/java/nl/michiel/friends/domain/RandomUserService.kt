@@ -1,5 +1,8 @@
 package nl.michiel.friends.domain
 
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -9,6 +12,15 @@ interface RandomUserService {
         @Query("page") page: Int = 1,
         @Query("results") results: Int = 10,
     ): RandomUserResult
+}
+
+fun createService(): RandomUserService {
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://randomuser.me/")
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+
+    return retrofit.create()
 }
 
 data class RandomUserResult(

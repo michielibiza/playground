@@ -58,6 +58,9 @@ dependencies {
     implementation libs.compose.material
     implementation libs.compose.navigation
     implementation libs.timber
+    implementation libs.koin.core
+    implementation libs.koin.android
+    implementation libs.koin.compose
 
     implementation project(":feature:friends")
     implementation project(":feature:trips")

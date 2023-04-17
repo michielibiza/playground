@@ -23,11 +23,15 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import nl.michiel.friends.data.Friend
 import nl.michiel.friends.viewmodel.FriendsViewModel
+import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
 private val badgeSize = 160.dp
+
 @Composable
-fun FriendsScreen(viewModel: FriendsViewModel = FriendsViewModel()) {
+fun FriendsScreen(
+    viewModel: FriendsViewModel = koinViewModel()
+) {
 
     val friends = viewModel.getFriends().collectAsLazyPagingItems()
 

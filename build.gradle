@@ -4,13 +4,12 @@ buildscript {
         retrofit_version = "2.9.0"
 
         libs = [
-                timber  : 'com.jakewharton.timber:timber:5.0.1',
-                androidx: [
+                androidx     : [
                         core     : 'androidx.core:core-ktx:1.10.0',
                         lifecycle: 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1',
                         paging   : "androidx.paging:paging-runtime:3.1.1"
                 ],
-                compose : [
+                compose      : [
                         activity  : 'androidx.activity:activity-compose:1.7.0',
                         ui        : "androidx.compose.ui:ui:$compose_ui_version",
                         preview   : "androidx.compose.ui:ui-tooling-preview:$compose_ui_version",
@@ -20,19 +19,25 @@ buildscript {
                         manifest  : "androidx.compose.ui:ui-test-manifest:$compose_ui_version",
                         paging    : "androidx.paging:paging-compose:1.0.0-alpha17"
                 ],
-                test    : [
+                koin         : [
+                        core   : "io.insert-koin:koin-core:3.3.3",
+                        android: "io.insert-koin:koin-android:3.3.3",
+                        compose: "io.insert-koin:koin-androidx-compose:3.4.2",
+                ],
+                maps         : [
+                        compose: 'com.google.maps.android:maps-compose:2.11.4',
+                        play   : 'com.google.android.gms:play-services-maps:18.1.0',
+                ],
+                test         : [
                         junit   : 'junit:junit:4.13.2',
                         extjunit: 'androidx.test.ext:junit:1.1.5',
                         espresso: 'androidx.test.espresso:espresso-core:3.5.1',
                         compose : "androidx.compose.ui:ui-test-junit4:$compose_ui_version",
                 ],
-                maps    : [
-                        compose: 'com.google.maps.android:maps-compose:2.11.4',
-                        play   : 'com.google.android.gms:play-services-maps:18.1.0',
-                ],
-                coil    : "io.coil-kt:coil-compose:2.2.2",
-                retrofit: "com.squareup.retrofit2:retrofit:$retrofit_version",
+                coil         : "io.coil-kt:coil-compose:2.2.2",
+                retrofit     : "com.squareup.retrofit2:retrofit:$retrofit_version",
                 retrofitmoshi: "com.squareup.retrofit2:converter-moshi:$retrofit_version",
+                timber       : 'com.jakewharton.timber:timber:5.0.1',
         ]
     }
 }

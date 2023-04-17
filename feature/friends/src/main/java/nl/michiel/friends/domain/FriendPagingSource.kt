@@ -3,9 +3,6 @@ package nl.michiel.friends.domain
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import nl.michiel.friends.data.Friend
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 
 class FriendPagingSource(private val service: RandomUserService) : PagingSource<Int, Friend>() {
     override fun getRefreshKey(state: PagingState<Int, Friend>): Int? {
@@ -31,15 +28,6 @@ class FriendPagingSource(private val service: RandomUserService) : PagingSource<
             LoadResult.Error(e)
         }
     }
-}
-
-fun createService(): RandomUserService {
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://randomuser.me/")
-        .addConverterFactory(MoshiConverterFactory.create())
-        .build()
-
-    return retrofit.create()
 }
 
 private fun RandomUser.toFriend(id: Int) =
