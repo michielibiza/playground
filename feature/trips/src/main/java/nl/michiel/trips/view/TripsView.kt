@@ -25,10 +25,10 @@ import timber.log.Timber
 val amsterdam = LatLng(52.369792, 4.89075924)
 
 @Composable
-fun TripsViewNoMap(onTapInfo: () -> Unit = { }) {
+fun TripsViewNoMap(onNavigate: (content: BottomSheet) -> Unit = { }) {
     Box(Modifier.fillMaxSize(), Alignment.Center) {
         Button(
-            onClick = onTapInfo
+            onClick = { onNavigate(BottomSheet.CITY) }
         ) {
             Text(text = "Open details")
         }
@@ -36,7 +36,7 @@ fun TripsViewNoMap(onTapInfo: () -> Unit = { }) {
 }
 
 @Composable
-fun TripsView(onTapInfo: () -> Unit = { }) {
+fun TripsView(onNavigate: (content: BottomSheet) -> Unit = { }) {
     Timber.d("maps key: ")
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -53,7 +53,7 @@ fun TripsView(onTapInfo: () -> Unit = { }) {
                 state = MarkerState(position = amsterdam),
                 title = "Amsterdam",
                 snippet = "bla bla bla bla",
-                onInfoWindowClick = { onTapInfo() }
+                onInfoWindowClick = { onNavigate(BottomSheet.CITY) }
             ) { marker ->
                 Column(
                     Modifier

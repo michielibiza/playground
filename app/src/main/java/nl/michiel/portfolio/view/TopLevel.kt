@@ -8,6 +8,8 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -21,7 +23,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import nl.michiel.friends.view.FriendsScreen
-import nl.michiel.trips.view.TripsViewNoMap
+import nl.michiel.trips.view.*
 
 enum class Navigation(val icon: ImageVector) {
     TRIPS(Icons.Filled.Place),
@@ -40,12 +42,14 @@ val navItems = listOf(
 fun TopLevelNavigation() {
     val navController = rememberNavController()
     val coroutineScope = rememberCoroutineScope()
+    val bottomSheet = remember { mutableStateOf(BottomSheet.NONE) }
     val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
     )
 
-    fun openPlaceInfo() {
+    fun showBottomSheet(content: BottomSheet) {
         coroutineScope.launch {
+            bottomSheet.value = content
             modalSheetState.show()
         }
     }
@@ -53,7 +57,15 @@ fun TopLevelNavigation() {
     ModalBottomSheetLayout(
         sheetState = modalSheetState,
         sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
-        sheetContent = { BottomSheetUi() },
+        sheetContent = {
+            when (bottomSheet.value) {
+                BottomSheet.CITY -> CityDetails(::showBottomSheet)
+                BottomSheet.HOTEL -> HotelDetails(::showBottomSheet)
+                BottomSheet.RESTAURANT -> RestaurantDetails(::showBottomSheet)
+                BottomSheet.PARK -> ParkDetails(::showBottomSheet)
+                else -> {}
+            }
+        },
     ) {
         Scaffold(bottomBar = { AppBottomNavigation(navController) }) { padding ->
             NavHost(
@@ -61,28 +73,11 @@ fun TopLevelNavigation() {
                 startDestination = Navigation.TRIPS.name,
                 Modifier.padding(padding)
             ) {
-                composable(Navigation.TRIPS.name) { TripsViewNoMap(::openPlaceInfo) }
+                composable(Navigation.TRIPS.name) { TripsViewNoMap(::showBottomSheet) }
                 composable(Navigation.FRIENDS.name) { FriendsScreen() }
                 composable(Navigation.PROFILE.name) { Todo("profile") }
             }
         }
-    }
-}
-
-@Composable
-private fun BottomSheetUi() {
-    Column(Modifier.padding(16.dp, 8.dp)) {
-        Text("Amsterdam", style = MaterialTheme.typography.h2)
-        Spacer(Modifier.height(8.dp))
-        Text("bla ".repeat(100), style = MaterialTheme.typography.body1)
-        Spacer(Modifier.height(8.dp))
-        Text("Highlights", style = MaterialTheme.typography.h3)
-        Spacer(Modifier.height(8.dp))
-        Text("bla ".repeat(40), style = MaterialTheme.typography.body1)
-        Spacer(Modifier.height(8.dp))
-        Text("Friend's recommendations", style = MaterialTheme.typography.h3)
-        Spacer(Modifier.height(8.dp))
-        Text("bla ".repeat(140), style = MaterialTheme.typography.body1)
     }
 }
 
