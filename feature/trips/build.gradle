@@ -47,6 +47,8 @@ dependencies {
     implementation libs.compose.preview
     implementation libs.compose.material
     implementation libs.timber
+    implementation libs.maps.compose
+    implementation libs.maps.play
 
     testImplementation libs.test.junit
 

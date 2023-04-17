@@ -18,6 +18,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        manifestPlaceholders = [googleMapsApiKey: PRIVATE_MAP_KEY]
     }
 
     buildTypes {
