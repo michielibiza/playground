@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -23,7 +25,18 @@ import timber.log.Timber
 val amsterdam = LatLng(52.369792, 4.89075924)
 
 @Composable
-fun TripsView() {
+fun TripsViewNoMap(onTapInfo: () -> Unit = { }) {
+    Box(Modifier.fillMaxSize(), Alignment.Center) {
+        Button(
+            onClick = onTapInfo
+        ) {
+            Text(text = "Open details")
+        }
+    }
+}
+
+@Composable
+fun TripsView(onTapInfo: () -> Unit = { }) {
     Timber.d("maps key: ")
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -40,6 +53,7 @@ fun TripsView() {
                 state = MarkerState(position = amsterdam),
                 title = "Amsterdam",
                 snippet = "bla bla bla bla",
+                onInfoWindowClick = { onTapInfo() }
             ) { marker ->
                 Column(
                     Modifier
