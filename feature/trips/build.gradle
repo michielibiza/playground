@@ -1,23 +1,18 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'nl.michiel.portfolio'
+    namespace 'nl.michiel.trips'
     compileSdk 33
 
     defaultConfig {
-        applicationId "nl.michiel.portfolio"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -47,25 +42,18 @@ android {
 }
 
 dependencies {
-
     implementation libs.androidx.core
-    implementation libs.androidx.lifecycle
-    implementation libs.compose.activity
     implementation libs.compose.ui
     implementation libs.compose.preview
     implementation libs.compose.material
-    implementation libs.compose.navigation
     implementation libs.timber
-
-    implementation project(":feature:friends")
-    implementation project(":feature:trips")
 
     testImplementation libs.test.junit
 
     androidTestImplementation libs.test.extjunit
     androidTestImplementation libs.test.espresso
-    androidTestImplementation libs.test.compose
 
     debugImplementation libs.compose.tooling
     debugImplementation libs.compose.manifest
+
 }
