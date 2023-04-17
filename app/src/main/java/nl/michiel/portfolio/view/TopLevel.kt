@@ -1,4 +1,4 @@
-package nl.michiel.portfolio.ui
+package nl.michiel.portfolio.view
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape

@@ -1,4 +1,4 @@
-package nl.michiel.portfolio.ui.theme
+package nl.michiel.portfolio.view.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
