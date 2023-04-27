@@ -1,6 +1,10 @@
 package nl.michiel.trips.view
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -10,7 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CityDetails(onNavigate: (content: BottomSheet) -> Unit = { }) {
+fun DetailsFor(details: PlaceDetails, onShowDetails: (PlaceDetails) -> Unit) {
+    when (details) {
+        PlaceDetails.CITY -> CityDetails(onShowDetails)
+        PlaceDetails.HOTEL -> HotelDetails(onShowDetails)
+        PlaceDetails.RESTAURANT -> RestaurantDetails(onShowDetails)
+        PlaceDetails.PARK -> ParkDetails(onShowDetails)
+        else -> {}
+    }
+}
+
+@Composable
+fun CityDetails(onNavigate: (content: PlaceDetails) -> Unit = { }) {
     Column(Modifier.padding(16.dp, 8.dp)) {
         Text("Amsterdam", style = MaterialTheme.typography.h2)
         Spacer(Modifier.height(8.dp))
@@ -20,22 +35,22 @@ fun CityDetails(onNavigate: (content: BottomSheet) -> Unit = { }) {
         Spacer(Modifier.height(8.dp))
         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             item {
-                Button({ onNavigate(BottomSheet.RESTAURANT) }) {
+                Button({ onNavigate(PlaceDetails.RESTAURANT) }) {
                     Text("FEBO")
                 }
             }
             item {
-                Button({ onNavigate(BottomSheet.HOTEL) }) {
+                Button({ onNavigate(PlaceDetails.HOTEL) }) {
                     Text("Amstel Hotel")
                 }
             }
             item {
-                Button({ onNavigate(BottomSheet.RESTAURANT) }) {
+                Button({ onNavigate(PlaceDetails.RESTAURANT) }) {
                     Text("Salsa Shop")
                 }
             }
             item {
-                Button({ onNavigate(BottomSheet.PARK) }) {
+                Button({ onNavigate(PlaceDetails.PARK) }) {
                     Text("Vondelpark")
                 }
             }
@@ -48,39 +63,39 @@ fun CityDetails(onNavigate: (content: BottomSheet) -> Unit = { }) {
 }
 
 @Composable
-fun RestaurantDetails(onNavigate: (content: BottomSheet) -> Unit = { }) {
+fun RestaurantDetails(onNavigate: (content: PlaceDetails) -> Unit = { }) {
     Column(Modifier.padding(16.dp, 8.dp)) {
         Text("Restaurant", style = MaterialTheme.typography.h2)
         Spacer(Modifier.height(8.dp))
         Text("bla ".repeat(100), style = MaterialTheme.typography.body1)
         Spacer(Modifier.height(8.dp))
-        Button(onClick = { onNavigate(BottomSheet.CITY) }) {
+        Button(onClick = { onNavigate(PlaceDetails.CITY) }) {
             Text("Amsterdam")
         }
     }
 }
 
 @Composable
-fun HotelDetails(onNavigate: (content: BottomSheet) -> Unit = { }) {
+fun HotelDetails(onNavigate: (content: PlaceDetails) -> Unit = { }) {
     Column(Modifier.padding(16.dp, 8.dp)) {
         Text("Hotel", style = MaterialTheme.typography.h2)
         Spacer(Modifier.height(8.dp))
         Text("bla ".repeat(100), style = MaterialTheme.typography.body1)
         Spacer(Modifier.height(8.dp))
-        Button(onClick = { onNavigate(BottomSheet.CITY) }) {
+        Button(onClick = { onNavigate(PlaceDetails.CITY) }) {
             Text("Amsterdam")
         }
     }
 }
 
 @Composable
-fun ParkDetails(onNavigate: (content: BottomSheet) -> Unit = { }) {
+fun ParkDetails(onNavigate: (content: PlaceDetails) -> Unit = { }) {
     Column(Modifier.padding(16.dp, 8.dp)) {
         Text("Park", style = MaterialTheme.typography.h2)
         Spacer(Modifier.height(8.dp))
         Text("bla ".repeat(100), style = MaterialTheme.typography.body1)
         Spacer(Modifier.height(8.dp))
-        Button(onClick = { onNavigate(BottomSheet.CITY) }) {
+        Button(onClick = { onNavigate(PlaceDetails.CITY) }) {
             Text("Amsterdam")
         }
     }

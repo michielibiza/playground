@@ -42,14 +42,14 @@ val navItems = listOf(
 fun TopLevelNavigation() {
     val navController = rememberNavController()
     val coroutineScope = rememberCoroutineScope()
-    val bottomSheet = remember { mutableStateOf(BottomSheet.NONE) }
+    val placeDetails = remember { mutableStateOf(PlaceDetails.NONE) }
     val modalSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
     )
 
-    fun showBottomSheet(content: BottomSheet) {
+    fun showBottomSheet(content: PlaceDetails) {
         coroutineScope.launch {
-            bottomSheet.value = content
+            placeDetails.value = content
             modalSheetState.show()
         }
     }
@@ -57,15 +57,7 @@ fun TopLevelNavigation() {
     ModalBottomSheetLayout(
         sheetState = modalSheetState,
         sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
-        sheetContent = {
-            when (bottomSheet.value) {
-                BottomSheet.CITY -> CityDetails(::showBottomSheet)
-                BottomSheet.HOTEL -> HotelDetails(::showBottomSheet)
-                BottomSheet.RESTAURANT -> RestaurantDetails(::showBottomSheet)
-                BottomSheet.PARK -> ParkDetails(::showBottomSheet)
-                else -> {}
-            }
-        },
+        sheetContent = { DetailsFor(placeDetails.value, ::showBottomSheet) },
     ) {
         Scaffold(bottomBar = { AppBottomNavigation(navController) }) { padding ->
             NavHost(

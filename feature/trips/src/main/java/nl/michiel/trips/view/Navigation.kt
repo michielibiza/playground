@@ -1,6 +1,6 @@
 package nl.michiel.trips.view
 
-enum class BottomSheet {
+enum class PlaceDetails {
     NONE,
     CITY,
     RESTAURANT,
