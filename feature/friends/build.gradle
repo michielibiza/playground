@@ -57,6 +57,9 @@ dependencies {
     implementation libs.koin.compose
 
     testImplementation libs.test.junit
+    testImplementation libs.test.mockito
+    testImplementation libs.test.coroutines
+    testImplementation libs.test.paging
 
     androidTestImplementation libs.test.extjunit
     androidTestImplementation libs.test.espresso

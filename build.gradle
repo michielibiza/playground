@@ -1,13 +1,14 @@
 buildscript {
     ext {
         compose_ui_version = '1.4.1'
+        paging_version = '3.2.0-alpha04'
         retrofit_version = "2.9.0"
 
         libs = [
                 androidx     : [
                         core     : 'androidx.core:core-ktx:1.10.0',
                         lifecycle: 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1',
-                        paging   : "androidx.paging:paging-runtime:3.1.1"
+                        paging: "androidx.paging:paging-runtime:$paging_version"
                 ],
                 compose      : [
                         activity  : 'androidx.activity:activity-compose:1.7.0',
@@ -17,7 +18,7 @@ buildscript {
                         navigation: "androidx.navigation:navigation-compose:2.5.3",
                         tooling   : "androidx.compose.ui:ui-tooling:$compose_ui_version",
                         manifest  : "androidx.compose.ui:ui-test-manifest:$compose_ui_version",
-                        paging    : "androidx.paging:paging-compose:1.0.0-alpha17"
+                        paging: "androidx.paging:paging-compose:1.0.0-alpha18"
                 ],
                 koin         : [
                         core   : "io.insert-koin:koin-core:3.3.3",
@@ -29,10 +30,13 @@ buildscript {
                         play   : 'com.google.android.gms:play-services-maps:18.1.0',
                 ],
                 test         : [
-                        junit   : 'junit:junit:4.13.2',
-                        extjunit: 'androidx.test.ext:junit:1.1.5',
-                        espresso: 'androidx.test.espresso:espresso-core:3.5.1',
-                        compose : "androidx.compose.ui:ui-test-junit4:$compose_ui_version",
+                        junit     : 'junit:junit:4.13.2',
+                        mockito   : 'org.mockito.kotlin:mockito-kotlin:4.1.0',
+                        coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4",
+                        paging    : "androidx.paging:paging-testing:$paging_version",
+                        extjunit  : 'androidx.test.ext:junit:1.1.5',
+                        espresso  : 'androidx.test.espresso:espresso-core:3.5.1',
+                        compose   : "androidx.compose.ui:ui-test-junit4:$compose_ui_version",
                 ],
                 coil         : "io.coil-kt:coil-compose:2.2.2",
                 retrofit     : "com.squareup.retrofit2:retrofit:$retrofit_version",
