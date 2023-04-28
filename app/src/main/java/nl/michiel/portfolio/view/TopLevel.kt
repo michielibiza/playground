@@ -65,7 +65,7 @@ fun TopLevelNavigation() {
                 startDestination = Navigation.TRIPS.name,
                 Modifier.padding(padding)
             ) {
-                composable(Navigation.TRIPS.name) { TripsViewNoMap(::showBottomSheet) }
+                composable(Navigation.TRIPS.name) { TripsView(::showBottomSheet) }
                 composable(Navigation.FRIENDS.name) { FriendsScreen() }
                 composable(Navigation.PROFILE.name) { Todo("profile") }
             }
